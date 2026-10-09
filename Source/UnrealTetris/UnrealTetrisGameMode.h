@@ -78,4 +78,8 @@ public:
     /** 게임 오버 처리 */
     UFUNCTION(BlueprintCallable, Category = "Tetris")
     void GameOver();
+
+protected:
+    /** 피스를 보드에 고정 */
+    void PlacePieceOnBoard();
 };

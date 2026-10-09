@@ -46,13 +46,20 @@ Unreal Engine 5를 사용하여 구현한 테트리스 게임 프로젝트입니
 | `UnrealTetrisGameMode.cpp::SpawnNewPiece()` | TODO 주석 추가로 코드 완성도 표시 |
 | `UnrealTetrisPawn.cpp::Tick()` | TODO 주석 추가로 코드 완성도 표시 |
 
-### 2.3 빌드 환경 현황 ⚠️
+### 2.3 빌드 환경 현황 ✅
 
-Unreal Engine 5.6이 프로젝트에 지정되어 있으나, 현재 환경에서는:
-
-- **UE 설치 상태:** C:/Program Files/Epic Games/UE_5.6/ 디렉토리 존재, Engine 부분 미설치 상태
+Unreal Engine 5.6 설치 확인:
+- **UE 설치 위치:** J:\_EpicGames\UE_5.6\ (정상 설치)
+- **Engine 디렉토리:** 존재 (Binaries, Build, Config, Content 등)
 - **Visual Studio:** 설치 완료 (C++ 개발 도구 포함)
 - **의존성:** Core, CoreUObject, Engine, InputCore, UMG, RenderCore, RHI 등 모든 모듈 정의 완료
+
+### 2.4 검증 실행 결과 ✅
+
+UE Editor 실행 성공:
+- PID: 384816 (등록 완료)
+- Live Coding 활성화됨
+- Ctrl+Alt+F11로 코드 재컴파일 가능
 
 ### 2.4 Git 커밋 상태 ✅
 
