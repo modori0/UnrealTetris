@@ -106,6 +106,7 @@ void AUnrealTetrisGameMode::RotatePiece()
     {
         // 회전 전 위치 저장
         FVector2D OldPos = CurrentPiece->Position;
+        int32 OldRotation = CurrentPiece->Rotation;
 
         CurrentPiece->Rotate();
 
@@ -117,7 +118,18 @@ void AUnrealTetrisGameMode::RotatePiece()
             if (Pos.X < 0 || Pos.X >= BoardWidth || Pos.Y < 0 || Pos.Y >= BoardHeight)
             {
                 // 범위 초과 - 되돌리기
-                CurrentPiece->Rotation = (CurrentPiece->Rotation + Shapes.Num() - 1) % Shapes.Num();
+                CurrentPiece->Rotation = OldRotation;
+                CurrentPiece->Position = OldPos;
+                return;
+            }
+
+            // 보드에 이미 배치된 블록과 충돌하는지 확인
+            int32 BoardIndex = FMath::RoundToInt(Pos.Y) * BoardWidth + FMath::RoundToInt(Pos.X);
+            if (BoardIndex >= 0 && BoardIndex < GameBoard.Num() && GameBoard[BoardIndex] != 0)
+            {
+                // 충돌 - 되돌리기
+                CurrentPiece->Rotation = OldRotation;
+                CurrentPiece->Position = OldPos;
                 return;
             }
         }

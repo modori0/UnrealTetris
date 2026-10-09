@@ -1,8 +1,10 @@
 // Fill out your copyright notice in the Description page Settings.
 
 #include "UnrealTetrisPawn.h"
+#include "UnrealTetrisGameMode.h"
 #include "UnrealTetrisPiece.h"
 #include "Components/BoxComponent.h"
+#include "Components/InputComponent.h"
 #include "GameFramework/Actor.h"
 #include "Engine/Engine.h"
 
@@ -48,64 +50,59 @@ void AUnrealTetrisPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputCo
     PlayerInputComponent->BindAction("Drop", IE_Pressed, this, &AUnrealTetrisPawn::DropPiece);
 }
 
-void AUnrealTetrisPawn::MoveLeft()
+void AUnrealTetrisPawn::MoveLeft(float AxisValue)
 {
-    if (ControlledPiece)
+    if (AxisValue != 0.f && GetWorld() && GetWorld()->GetAuthGameMode())
     {
-        // 피스를 왼쪽으로 이동 시도
-        if (GetWorld() && GetWorld()->GetAuthGameMode())
+        AUnrealTetrisGameMode* GameMode = Cast<AUnrealTetrisGameMode>(GetWorld()->GetAuthGameMode());
+        if (GameMode)
         {
-            AUnrealTetrisGameMode* GameMode = Cast<AUnrealTetrisGameMode>(GetWorld()->GetAuthGameMode());
-            if (GameMode)
-            {
-                GameMode->TryMovePiece(-1, 0);
-            }
+            // 왼쪽으로 이동 (음수값이면 왼쪽)
+            GameMode->TryMovePiece(-1, 0);
         }
     }
 }
 
-void AUnrealTetrisPawn::MoveRight()
+void AUnrealTetrisPawn::MoveRight(float AxisValue)
 {
-    if (ControlledPiece)
+    if (AxisValue != 0.f && GetWorld() && GetWorld()->GetAuthGameMode())
     {
-        // 피스를 오른쪽으로 이동 시도
-        if (GetWorld() && GetWorld()->GetAuthGameMode())
+        AUnrealTetrisGameMode* GameMode = Cast<AUnrealTetrisGameMode>(GetWorld()->GetAuthGameMode());
+        if (GameMode)
         {
-            AUnrealTetrisGameMode* GameMode = Cast<AUnrealTetrisGameMode>(GetWorld()->GetAuthGameMode());
-            if (GameMode)
-            {
-                GameMode->TryMovePiece(1, 0);
-            }
+            // 오른쪽으로 이동 (양수값이면 오른쪽)
+            GameMode->TryMovePiece(1, 0);
         }
     }
 }
 
 void AUnrealTetrisPawn::RotatePiece()
 {
-    if (ControlledPiece)
+    if (GetWorld() && GetWorld()->GetAuthGameMode())
     {
-        ControlledPiece->Rotate();
+        AUnrealTetrisGameMode* GameMode = Cast<AUnrealTetrisGameMode>(GetWorld()->GetAuthGameMode());
+        if (GameMode)
+        {
+            GameMode->RotatePiece();
+        }
     }
 }
 
 void AUnrealTetrisPawn::DropPiece()
 {
-    if (ControlledPiece)
+    if (GetWorld() && GetWorld()->GetAuthGameMode())
     {
-        // 하단까지 즉시 하강
-        if (GetWorld() && GetWorld()->GetAuthGameMode())
+        AUnrealTetrisGameMode* GameMode = Cast<AUnrealTetrisGameMode>(GetWorld()->GetAuthGameMode());
+        if (GameMode)
         {
-            AUnrealTetrisGameMode* GameMode = Cast<AUnrealTetrisGameMode>(GetWorld()->GetAuthGameMode());
-            if (GameMode)
+            // 하단까지 즉시 하강
+            // 하강이 가능한 위치까지 하강
+            while (GameMode->TryMovePiece(0, 1))
             {
-                // 하강이 가능한 위치까지 하강
-                while (GameMode->TryMovePiece(0, 1))
-                {
-                    // 이동 가능하면 계속 하강
-                }
-                // 이동 불가능하면 피스 고정
-                GameMode->MovePieceDown();
+                // 이동 가능하면 계속 하강
             }
+            // 이동 불가능하면 피스 고정
+            GameMode->MovePieceDown();
         }
     }
 }
