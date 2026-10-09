@@ -71,7 +71,8 @@ void AUnrealTetrisGameMode::RotatePiece()
 void AUnrealTetrisGameMode::SpawnNewPiece()
 {
     // 새 피스 생성 로직
-    // 실제 구현에서는 랜덤 피스 생성
+    // TODO: 랜덤 피스 생성 및 위치 설정 필요
+    // 현재는 기본 구조만 제공
 }
 
 void AUnrealTetrisGameMode::CheckLineClear()

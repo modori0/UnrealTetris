@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/GameModeBase.h"
-#include "TetrisPiece.h"
+#include "UnrealTetrisPiece.h"
 #include "UnrealTetrisGameMode.generated.h"
 
 UCLASS()

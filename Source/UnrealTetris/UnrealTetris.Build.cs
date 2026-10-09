@@ -20,10 +20,5 @@ public class UnrealTetris : ModuleRules
             "RenderCore",
             "RHI"
         });
-
-        if (Target.bCompilePhysicsAssetTools)
-        {
-            PrivateDependencyModuleNames.Add("PhysX");
-        }
     }
 }

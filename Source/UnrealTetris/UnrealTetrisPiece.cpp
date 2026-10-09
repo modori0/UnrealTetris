@@ -9,16 +9,7 @@ ATetrisPiece::ATetrisPiece()
     Rotation = 0;
     Position = FVector2D(0, 0);
     PieceType = ETetrisPieceType::None;
-
-    // Colors for different piece types
-    TMap<ETetrisPieceType, FLinearColor> PieceColors;
-    PieceColors.Add(ETetrisPieceType::I, FLinearColor::Cyan);
-    PieceColors.Add(ETetrisPieceType::O, FLinearColor::Yellow);
-    PieceColors.Add(ETetrisPieceType::T, FLinearColor::Magenta);
-    PieceColors.Add(ETetrisPieceType::S, FLinearColor::Green);
-    PieceColors.Add(ETetrisPieceType::Z, FLinearColor::Red);
-    PieceColors.Add(ETetrisPieceType::J, FLinearColor::Blue);
-    PieceColors.Add(ETetrisPieceType::L, FLinearColor::Orange);
+    Color = FLinearColor::White;
 }
 
 void ATetrisPiece::Initialize(ETetrisPieceType InType)

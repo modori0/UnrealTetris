@@ -77,10 +77,10 @@ void AUnrealTetrisPawn::Tick(float DeltaTime)
 
     TimeSinceLastFall += DeltaTime;
 
-    // 자동 하강 로직
+    // 자동 하강 로직 (임시 구현)
     if (TimeSinceLastFall >= FallSpeed)
     {
         TimeSinceLastFall = 0.0f;
-        // 하강 처리
+        // TODO: 하강 처리 로직 추가 필요
     }
 }

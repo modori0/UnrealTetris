@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Pawn.h"
-#include "TetrisPiece.h"
+#include "UnrealTetrisPiece.h"
 #include "UnrealTetrisPawn.generated.h"
 
 class UBoxComponent;
