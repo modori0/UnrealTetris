@@ -1,0 +1,30 @@
+# Unreal Engine 빌드 파일
+Binaries/
+Intermediate/
+DerivedDataCache/
+Saved/
+
+# Visual Studio 파일
+*.sln
+*.sdf
+*.opensdf
+*.VC.db
+*.VC.VC.opendb
+
+# 로컬 설정
+*.user
+*.userprefs
+*.opensdf
+
+# 로그 및 캐시
+*.log
+*.tmp
+*.cache
+
+# OS 파일
+Thumbs.db
+Desktop.ini
+.DS_Store
+
+# 프로젝트 설정 (필요시 제외)
+# *.uprojectdirs
