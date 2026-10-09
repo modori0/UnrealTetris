@@ -64,7 +64,7 @@ void ATetrisPiece::Initialize(ETetrisPieceType InType)
 
 void ATetrisPiece::Rotate()
 {
-    Rotation = (Rotation + 1) % Shapes.size();
+    Rotation = (Rotation + 1) % Shapes.Num();
 }
 
 void ATetrisPiece::SetPosition(float X, float Y)
@@ -77,7 +77,7 @@ TArray<FVector2D> ATetrisPiece::GetBlockPositions() const
 {
     TArray<FVector2D> Positions;
 
-    if (Shapes.size() > 0 && Rotation < Shapes.size())
+    if (Shapes.Num() > 0 && Rotation < Shapes.Num())
     {
         const FTetrisPieceShape& Shape = Shapes[Rotation];
         for (const FVector2D& Block : Shape.Blocks)
