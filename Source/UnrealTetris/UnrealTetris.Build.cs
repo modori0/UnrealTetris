@@ -2,23 +2,22 @@ using UnrealBuildTool;
 
 public class UnrealTetris : ModuleRules
 {
-    public UnrealTetris(ReadOnlyTargetRules Target) : base(Target)
-    {
-        PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
+	public UnrealTetris(ReadOnlyTargetRules Target) : base(Target)
+	{
+		PCHUsage = PCHUsageMode.UseExplicitOrSharedPCHs;
+		bEnableExceptions = true;
 
-        bEnableExceptions = true;
+		PublicDependencyModuleNames.AddRange(new string[] {
+			"Core",
+			"CoreUObject",
+			"Engine",
+			"InputCore",
+			"UMG"
+		});
 
-        PublicDependencyModuleNames.AddRange(new string[] {
-            "Core",
-            "CoreUObject",
-            "Engine",
-            "InputCore",
-            "UMG"
-        });
-
-        PrivateDependencyModuleNames.AddRange(new string[] {
-            "RenderCore",
-            "RHI"
-        });
-    }
+		PrivateDependencyModuleNames.AddRange(new string[] {
+			"RenderCore",
+			"RHI"
+		});
+	}
 }
